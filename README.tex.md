@@ -307,7 +307,7 @@ $$
 \begin{align*}
 \tilde{E}(\mathbf{p}) &= 
 \frac{k}{2} \mathop\text{tr}{\left((\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})\right)} + 
-\mathop{\text{tr}}{\frac{1}{2\Delta t^2}\left(
+\frac{1}{2\Delta t^2}\mathop{\text{tr}}{\left(
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
 \right)} -
 \mathop\text{tr}{\left(\mathbf{p}^\top \mathbf{f}^\text{ext}\right)} \\&=
