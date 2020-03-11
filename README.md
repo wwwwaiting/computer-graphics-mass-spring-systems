@@ -129,7 +129,7 @@ will define an energy that will be minimized by the value of <img src="svgs/61cf
 satisfies <img src="svgs/f428e42f1278299d021e503dfeb2f94f.svg?invert_in_darkmode&sanitize=true" align=middle width=53.108715pt height=22.83138pt/>. The minimizer <img src="svgs/980fcd4213d7b5d2ffcc82ec78c27ead.svg?invert_in_darkmode&sanitize=true" align=middle width=10.50225pt height=14.61207pt/> of some function <img src="svgs/0dc5590ba457f7e2998c0ed49ab7b31f.svg?invert_in_darkmode&sanitize=true" align=middle width=35.262645pt height=24.6576pt/> will satisfy
 <img src="svgs/8146e66aa14c7988c2ba77b40286b1cd.svg?invert_in_darkmode&sanitize=true" align=middle width=81.22125pt height=24.6576pt/>. So we construct an energy <img src="svgs/84df98c65d88c6adf15d4645ffa25e47.svg?invert_in_darkmode&sanitize=true" align=middle width=13.08219pt height=22.46574pt/> such that <img src="svgs/7dc060b03cb3a15a83ee204d181c131e.svg?invert_in_darkmode&sanitize=true" align=middle width=124.28427pt height=24.6576pt/>:
 
-<p align="center"><img src="svgs/76195156f5590387ccb31b9616aff758.svg?invert_in_darkmode&sanitize=true" align=middle width=731.3047499999999pt height=85.26078pt/></p> 
+<p align="center"><img src="svgs/fbfffbbfb7f62bd67e37005456df62a0.svg?invert_in_darkmode&sanitize=true" align=middle width=735.2502398999999pt height=85.26077339999999pt/></p> 
 
 Keen observers will identify that the first term is potential energy and the
 second term resembles [kinetic
@@ -168,7 +168,7 @@ Now, suppose we somehow _knew already_ the vector <img src="svgs/27ad4bcb9a51570
 _unknown_ optimal solution <img src="svgs/61cf41460b5d444b8df90703eb5ef637.svg?invert_in_darkmode&sanitize=true" align=middle width=41.324415pt height=27.65697pt/>, then treating <img src="svgs/27ad4bcb9a515705743055d231c7d7c5.svg?invert_in_darkmode&sanitize=true" align=middle width=21.257775pt height=22.83138pt/> as a _constant_ we could
 find the optimal solution by solving the _quadratic_ optimization problem:
 
-<p align="center"><img src="svgs/d3dc7494d872489937b2ef87313ca469.svg?invert_in_darkmode&sanitize=true" align=middle width=741.6964499999999pt height=87.27906pt/></p> 
+<p align="center"><img src="svgs/e375b61a11fa03154261c7a0ea4be7dd.svg?invert_in_darkmode&sanitize=true" align=middle width=745.6420207499999pt height=87.27907155pt/></p> 
 
 The modified energy <img src="svgs/5fc3d1ec40b9a3acc07496c9f0e7f577.svg?invert_in_darkmode&sanitize=true" align=middle width=36.36996pt height=30.2676pt/> is _quadratic_ with respect to the unknowns
 <img src="svgs/980fcd4213d7b5d2ffcc82ec78c27ead.svg?invert_in_darkmode&sanitize=true" align=middle width=10.50225pt height=14.61207pt/>, therefore the solution is found when we set the first derivative equal to
@@ -194,7 +194,7 @@ The [subtext](https://en.wikipedia.org/wiki/Subtext) of this assignment is
 understanding the computational aspects of large matrices. In the algorithm
 above, Step 1 is easy and relies on "local" information for each spring.
 
-Step 2 on the otherhand involves all springs simultaneously.
+Step 2 on the other hand involves all springs simultaneously.
 [Matrices](https://en.wikipedia.org/wiki/Matrix_(mathematics)) are our
 convenient notation for representing both the [linear
 operators](https://en.wikipedia.org/wiki/Linear_operator) (e.g., in the equation
@@ -208,7 +208,7 @@ We can do the same for the _known_ previous time steps' positions
 <img src="svgs/36b373ed95b016fb214ef52b36dc5010.svg?invert_in_darkmode&sanitize=true" align=middle width=125.146395pt height=27.65697pt/>.
 
 We can then express the inertial term using matrices:
-<p align="center"><img src="svgs/edef44c91a1772228d8d6de8ddeeba32.svg?invert_in_darkmode&sanitize=true" align=middle width=688.7198999999999pt height=98.744085pt/></p>
+<p align="center"><img src="svgs/502a65ca2dad4b0da159f61cf78b4705.svg?invert_in_darkmode&sanitize=true" align=middle width=698.91196815pt height=98.7441576pt/></p>
 
 where <img src="svgs/797d20fec02db91e546ce25d31c18bf5.svg?invert_in_darkmode&sanitize=true" align=middle width=42.648375pt height=24.6576pt/> computes the [trace](https://en.wikipedia.org/wiki/Trace_(linear_algebra)) of <img src="svgs/d05b996d2c08252f77613c25205a0f04.svg?invert_in_darkmode&sanitize=true" align=middle width=14.292300000000001pt height=22.557149999999996pt/> (sums up the diagonal entries: <img src="svgs/3d30c855ff8804d9162b1ba648834929.svg?invert_in_darkmode&sanitize=true" align=middle width=115.79881499999999pt height=22.557149999999996pt/>).
 
@@ -243,7 +243,7 @@ where we stack the vector <img src="svgs/27ad4bcb9a515705743055d231c7d7c5.svg?in
 Combining our two matrix expressions together we can write <img src="svgs/9674605b99e37d0dbca0fc51ec6b1bc7.svg?invert_in_darkmode&sanitize=true" align=middle width=13.08219pt height=30.2676pt/> entirely
 in matrix form:
 
-<p align="center"><img src="svgs/20b527fb5c733058667e0de48fecf678.svg?invert_in_darkmode&sanitize=true" align=middle width=732.8046pt height=79.83986999999999pt/></p>
+<p align="center"><img src="svgs/880189a72000f65d4c97688d2ed69a29.svg?invert_in_darkmode&sanitize=true" align=middle width=747.6490444499999pt height=79.83989145pt/></p>
 
 > **Question:** Why do we not bother to write out the terms that are constant with
 > respect to <img src="svgs/980fcd4213d7b5d2ffcc82ec78c27ead.svg?invert_in_darkmode&sanitize=true" align=middle width=10.50225pt height=14.61207pt/>?

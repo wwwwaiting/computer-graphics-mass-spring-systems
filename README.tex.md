@@ -153,8 +153,8 @@ $\partial E/\partial \mathbf{p} = 0$. So we construct an energy $E$ such that $\
 $$
 \mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\mathbf{p}
 \underbrace{
-\left(\sum\limits_{ij} \frac12 k( \| \mathbf{p}_i-\mathbf{p}_j\|  - r_{ij})^2\right)  - 
-\Delta t^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) - 
+\left(\sum\limits_{ij} \frac12 k( \| \mathbf{p}_i-\mathbf{p}_j\|  - r_{ij})^2\right) +
+\frac{\Delta t^2}{2} \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) - 
 \left(\sum\limits_i \mathbf{p}_i^\top \mathbf{f}^\text{ext}_i \right)
 }_{E(\mathbf{p})}
 $$ 
@@ -201,8 +201,8 @@ find the optimal solution by solving the _quadratic_ optimization problem:
 $$
 \mathbf{p}^{t+\Delta t} = \mathop{\text{argmin}}_\mathbf{p}
 \underbrace{
-\left(\sum\limits_{ij} \frac12 k\| (\mathbf{p}_i-\mathbf{p}_j) - \mathbf{d}_{ij}\| ^2\right)  - 
-\Delta t^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) -
+\left(\sum\limits_{ij} \frac12 k\| (\mathbf{p}_i-\mathbf{p}_j) - \mathbf{d}_{ij}\| ^2\right)  +
+\frac{\Delta t^2}{2} \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) -
 \left(\sum\limits_i \mathbf{p}_i^\top \mathbf{f}^\text{ext}_i \right)
 }_{\tilde{E}(\mathbf{p})}.
 $$ 
@@ -233,7 +233,7 @@ The [subtext](https://en.wikipedia.org/wiki/Subtext) of this assignment is
 understanding the computational aspects of large matrices. In the algorithm
 above, Step 1 is easy and relies on "local" information for each spring.
 
-Step 2 on the otherhand involves all springs simultaneously.
+Step 2 on the other hand involves all springs simultaneously.
 [Matrices](https://en.wikipedia.org/wiki/Matrix_(mathematics)) are our
 convenient notation for representing both the [linear
 operators](https://en.wikipedia.org/wiki/Linear_operator) (e.g., in the equation
@@ -249,16 +249,16 @@ $\mathbf{p}^{t},\mathbf{p}^{t-\Delta t}\in \mathbf{R}^{n\times 3}$.
 We can then express the inertial term using matrices:
 $$
 \begin{align*}
-\Delta t^2 \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i - \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) &=
-\frac{1}{\Delta t^2} \left(\sum\limits_i 
-\left(\mathbf{p}_i - 2 \mathbf{p}^{t}_i - \mathbf{p}_i^{t-\Delta t}\right)^\top
+\frac{\Delta t^2}{2} \left(\sum\limits_i m_i \left(\frac{\mathbf{p}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}_i^{t-\Delta t}}{\Delta t^2 }\right)^2 \right) &=
+\frac{1}{2\Delta t^2} \left(\sum\limits_i 
+\left(\mathbf{p}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}_i^{t-\Delta t}\right)^\top
 m_i
-\left(\mathbf{p}_i - 2 \mathbf{p}^{t}_i - \mathbf{p}_i^{t-\Delta t}\right)
+\left(\mathbf{p}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}_i^{t-\Delta t}\right)
 \right) \\ &=
-\frac{1}{\Delta t^2} 
-\mathop{\text{tr}}{
+\frac{1}{2\Delta t^2} 
+\mathop{\text{tr}}\left(
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
-},
+\right),
 \end{align*}
 $$
 
@@ -307,9 +307,9 @@ $$
 \begin{align*}
 \tilde{E}(\mathbf{p}) &= 
 \frac{k}{2} \mathop\text{tr}{\left((\mathbf{A} \mathbf{p} - \mathbf{d})^\top (\mathbf{A} \mathbf{p} - \mathbf{d})\right)} + 
-\mathop{\text{tr}}{
+\mathop{\text{tr}}{\frac{1}{2\Delta t^2}\left(
 \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)^\top \mathbf{M} \left(\mathbf{p} - 2\mathbf{p}^{t} + \mathbf{p}^{t-\Delta t}\right)
-} 
+\right)} -
 \mathop\text{tr}{\left(\mathbf{p}^\top \mathbf{f}^\text{ext}\right)} \\&=
 \frac{1}{2} \mathop\text{tr}{\left( \mathbf{p}^\top (k \mathbf{A}^\top \mathbf{A} + \frac{1}{\Delta t^2 }\mathbf{M}) \mathbf{p} \right)}
 - \mathop\text{tr}{\left(\mathbf{p}^\top(k \mathbf{A}^\top \mathbf{d} + \frac{1}{\Delta t^2 }\mathbf{M} (2\mathbf{p}^t - \mathbf{p}^{t-\Delta t}) + \mathbf{f}^\text{ext})\right)} + \text{ constants }.
