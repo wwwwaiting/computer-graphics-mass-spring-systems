@@ -100,7 +100,7 @@ where <img src="svgs/612ecaae0105899fb8c4b10424449b4a.svg?invert_in_darkmode&san
 We can also use a _central_ finite difference to define the acceleration at time
 <img src="svgs/4f4f4e395762a3af4575de74c019ebb5.svg?invert_in_darkmode&sanitize=true" align=middle width=5.9361555pt height=20.22207pt/>:
 
-<p align="center"><img src="svgs/9f0117ddac55126872d30e373e4fa435.svg?invert_in_darkmode&sanitize=true" align=middle width=621.8817pt height=37.291484999999994pt/></p>
+<p align="center"><img src="svgs/18889ef0a469f8e0e370ca2a484e3d81.svg?invert_in_darkmode&sanitize=true" align=middle width=621.88096245pt height=37.29153615pt/></p>
 
 This expression mentions our _unknown_ variables <img src="svgs/60cd486c9b59db93b3a4fad0605ccebb.svg?invert_in_darkmode&sanitize=true" align=middle width=41.324415pt height=29.79009pt/> for the first
 time. We'll soon that based on definition of the potential spring energy above

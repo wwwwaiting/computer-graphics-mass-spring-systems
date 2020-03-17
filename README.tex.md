@@ -113,8 +113,8 @@ $$
 \ddot{\mathbf{p}}^t_i = 
 \frac{\partial ^2 \mathbf{p}_i(t)}{\partial t^2 } = 
 \frac{\dot{\mathbf{p}}^{t+\Delta t}_i - \dot{\mathbf{p}}^{t}_i}{\Delta t} =
-\frac{\mathbf{p}^{t+\Delta t}_i - \mathbf{p}^{t}_i}{\Delta t}
--\frac{\mathbf{p}^t_i - \mathbf{p}^{t-\Delta t}_i}{\Delta t}=
+\frac{\mathbf{p}^{t+\Delta t}_i - \mathbf{p}^{t}_i}{\Delta t^2}
+-\frac{\mathbf{p}^t_i - \mathbf{p}^{t-\Delta t}_i}{\Delta t^2}=
 \frac{\mathbf{p}^{t+\Delta t}_i - 2 \mathbf{p}^{t}_i + \mathbf{p}^{t-\Delta t}}{\Delta t^2 }.
 $$
 
