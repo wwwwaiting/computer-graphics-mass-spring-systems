@@ -9,7 +9,10 @@ void signed_incidence_matrix_sparse(
   //////////////////////////////////////////////////////////////////////////////
   // Replace with your code
   std::vector<Eigen::Triplet<double> > ijv;
-  ijv.emplace_back(0,0,1234.5678);
+  for (int idx = 0; idx < E.rows(); idx++){
+    ijv.emplace_back(Eigen::Triplet<double>(idx, E(idx, 0), 1));
+    ijv.emplace_back(Eigen::Triplet<double>(idx, E(idx, 1), -1));
+  }
   A.resize(E.rows(),n);
   A.setFromTriplets(ijv.begin(),ijv.end());
   //////////////////////////////////////////////////////////////////////////////

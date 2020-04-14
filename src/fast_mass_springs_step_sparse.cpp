@@ -19,10 +19,19 @@ void fast_mass_springs_step_sparse(
 {
   //////////////////////////////////////////////////////////////////////////////
   // Replace with your code
+  Eigen::MatrixXd d = Eigen::MatrixXd::Zero(E.rows(), 3);
+  Eigen::MatrixXd p = Ucur;
+
   for(int iter = 0;iter < 50;iter++)
   {
-    const Eigen::MatrixXd l = Ucur;
-    Unext = prefactorization.solve(l);
+    for (int idx=0; idx<d.rows(); idx++){
+			d.row(idx) = r(idx) * (p.row(E(idx,0)) - p.row(E(idx, 1))).normalized();
+ 	 	}
+      
+    Eigen::MatrixXd y = 1/ (pow(delta_t, 2)) * M * (2 * Ucur - Uprev) + fext;
+    const Eigen::MatrixXd l = k * A.transpose() * d + y + 1e10 * C.transpose() * C * V;
+    p = prefactorization.solve(l);
   }
+  Unext = p;
   //////////////////////////////////////////////////////////////////////////////
 }
